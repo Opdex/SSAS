@@ -32,7 +32,7 @@ A Stratis ID URI can easily be parsed by a wallet. It consists of three required
 
 Wallet compatibility relies on the implementation of the following requirements:
 
-- Scan QR code or retrieve Stratis ID URI
+- Ability to scan QR code or retrieve Stratis ID URI
 - User or wallet should validate the callback url of the authentication request
 - Sign the UID query string value of the request
 - _**POST**_ the JSON-encoded signed message and and public key to the callback URI, using HTTPS
@@ -44,6 +44,15 @@ Wallet compatibility relies on the implementation of the following requirements:
         "publicKey": "public-key"
     }
     ```
+    
+### dApp Compatibility
+
+dApp compatiblity relies on the implementation of the following requirements:
+
+- Host a HTTPS endpoint that is used in the Stratis ID URI callback
+  - The endpoint must validate the structure and contents of the request body
+  - The endpoint must verify the signature and its contents
+- Generate a QR code containing a Stratis ID URI and display this to the user
 
 ___
 
