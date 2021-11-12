@@ -1,6 +1,6 @@
 # Stratis Open Auth Protocol
 
-Decentralized wallet identification and authorization through message signing and signature validations.
+Decentralized wallet identification and authentication through message signing and signature validations.
 
 ## Usage
 
@@ -26,7 +26,7 @@ A Stratis ID URI can easily be parsed by a wallet. It consists of three required
 - The callback - a protocol-relative URL which the wallet will send a HTTPS request
 - The UID - a unique identifier for a request, which is present within the query string of the callback
 
-**Example:** `sid:api.example.com/auth?uid=some-guid`
+**Example:** `sid:api.example.com/auth?uid=some-uid`
 
 ### Wallet Compatibility
 
@@ -34,10 +34,10 @@ Wallet compatibility relies on the implementation of the following requirements:
 
 - Ability to scan QR code or retrieve Stratis ID URI
 - User or wallet should validate the callback url of the authentication request
-- Sign the UID query string value of the request
-- _**POST**_ the JSON-encoded signed message and and public key to the callback URI, using HTTPS
+- Sign the callback present in the Stratis ID URI
+- _**POST**_ the JSON-encoded signed message and and public key to the callback URL, using HTTPS
     ```
-    POST https://api.example.com/auth?uid=some-guid
+    POST https://api.example.com/auth?uid=some-uid
     Content-Type: application/json
     {
         "signature": "signed-message",
@@ -47,7 +47,7 @@ Wallet compatibility relies on the implementation of the following requirements:
     
 ### dApp Compatibility
 
-dApp compatiblity relies on the implementation of the following requirements:
+dApp compatibility relies on the implementation of the following requirements:
 
 - Host a HTTPS endpoint that is used in the Stratis ID URI callback
   - The endpoint must validate the structure and contents of the request body
