@@ -20,24 +20,29 @@ ___
 
 ### Stratis ID URI
 
-A Stratis ID URI can easily be parsed by a wallet. It consists of three required parts:
+A Stratis ID URI consists of four required parts:
 
 - The scheme - `sid`
 - The callback - a protocol-relative URL which the wallet will send a HTTPS request
 - The UID - a unique identifier for a request, which is present within the query string of the callback
+- The expiry datetime - a unix timestamp that specifies when the signature should expire, which is present within the query string of the callback
 
-**Example:** `sid:api.example.com/auth?uid=some-uid`
+**Example:** `sid:api.example.com/auth?uid=4606287adc774829ab643816a021efbf&exp=1647216000`
 
 ### Wallet Compatibility
 
 Wallet compatibility relies on the implementation of the following requirements:
 
 - Ability to scan QR code or retrieve Stratis ID URI
-- User or wallet should validate the callback url of the authentication request
+- User or wallet _must_ validate the callback url of the authentication request
+- Wallet _should_ verify that the expiry datetime has not passed
 - Sign the callback present in the Stratis ID URI
+    ```
+    message.Sign("api.example.com/auth?uid=4606287adc774829ab643816a021efbf&exp=1647216000")
+    ```
 - _**POST**_ the JSON-encoded signed message and and public key to the callback URL, using HTTPS
     ```
-    POST https://api.example.com/auth?uid=some-uid
+    POST https://api.example.com/auth?uid=4606287adc774829ab643816a021efbf&exp=1647216000
     Content-Type: application/json
     {
         "signature": "signed-message",
@@ -49,10 +54,11 @@ Wallet compatibility relies on the implementation of the following requirements:
 
 dApp compatibility relies on the implementation of the following requirements:
 
-- Host a HTTPS endpoint that is used in the Stratis ID URI callback
-  - The endpoint must validate the structure and contents of the request body
-  - The endpoint must verify the signature and its contents
 - Generate a QR code containing a Stratis ID URI and display this to the user
+- Host a HTTPS endpoint that is used in the Stratis ID URI callback
+  - The endpoint _must_ validate the structure and contents of the request body
+  - The endpoint _must_ verify the signature and its contents
+  - The endpoint _must_ verify the expiry datetime has not passed
 
 ___
 
