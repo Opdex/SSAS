@@ -4,10 +4,11 @@ You can use Stratis Open Auth Protocol with web sockets, to allow a user to pers
 
 ## Request Flow
 
-![Flow Diagram](flow.png)
+![Flow Diagram](https://user-images.githubusercontent.com/39023939/141682028-e96b8347-5413-4bef-8994-1d08d24b45b2.png)
+
 
 1. Connect to a websocket with a unique session or connection identifier.
-2. Build a [Stratis ID URI](../../README.md#stratis-id-uri), using the session or connection identifier as the UID query string. Generate a QR code containing this URI.
+2. Build a [Stratis ID URI](../../README.md#stratis-id-uri), using the session or connection identifier as the UID query string and including an expiration time. Generate a QR code containing this URI.
 3. User scans QR code displayed by the dApp.
 4. Respond to a callback request, validating the signature and the wallet address public key. Optionally, generate an auth token for the user.
 5. Send a message to the websocket using the session or connection identifier included in the callback.
