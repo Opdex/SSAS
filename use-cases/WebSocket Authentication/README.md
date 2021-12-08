@@ -1,6 +1,6 @@
 # WebSocket Authentication
 
-You can use Stratis Open Auth Protocol with web sockets, to allow a user to personalise their experience when using your dApp.
+You can use Stratis Signature Auth Specification with web sockets, to allow a user to personalise their experience when using your dApp.
 
 ## Request Flow
 

@@ -1,10 +1,10 @@
-# Stratis Open Auth Protocol
+# Stratis Signature Auth Specification
 
 Decentralized wallet identification and authentication through message signing and signature validations.
 
 ## Usage
 
-Stratis Open Auth Protocol can be used for the following purposes:
+Stratis Signature Auth Specification can be used for the following purposes:
 
 * Personalising the data that a dApp stores about and displays to a user
 * Verifying that a user has access to the private key of a wallet address
@@ -13,6 +13,10 @@ Stratis Open Auth Protocol can be used for the following purposes:
 
 - Decentralized authentication
 - No third party access to sensitive user info
+
+## Packages
+
+- [SSAS C#](https://github.com/Opdex/SSAS.NET)
 
 ___
 
