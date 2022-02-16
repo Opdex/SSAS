@@ -24,7 +24,7 @@ ___
 
 ### Stratis ID
 
-A Stratis ID can be broken down into the following parts:
+A Stratis ID consists of the following parts:
 
 - The callback - a protocol-relative URL to which the wallet will send a HTTPS request
 - The UID - a unique identifier for a request, which is present within the query string of the callback
